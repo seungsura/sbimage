@@ -68,14 +68,18 @@ pipeline {
             sh "docker push ${dockerHubRegistry}:latest"
           }
         }
-        post {
-            failure {
-                echo 'docker image push failure'
-            }
-            success {
-                echo 'docker image push success'
-            }
+      post {
+        failure {
+            echo 'Docker image push failure'
+            sh "docker image rm -f ${dockerHubRegistry}:${currentBuild.number}"
+            sh "docker image rm -f ${dockerHubRegistry}:latest"
         }
+        success {
+            echo 'Docker image push success'
+            sh "docker image rm -f ${dockerHubRegistry}:${currentBuild.number}"
+            sh "docker image rm -f ${dockerHubRegistry}:latest"
+        }
+     }
     }
     stage('docker container deploy') {
       steps {
