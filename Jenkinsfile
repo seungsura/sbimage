@@ -8,8 +8,8 @@ pipeline {
   environment {
     gitName = 'seungsura'
     gitEmail = 'seungsura@gmail.com'
-    gitWebaddress = 'https://github.com/seungsura/sb_image.git'
-    gitSshaddress = 'git@github.com:seungsura/sb_image.git'
+    gitWebaddress = 'https://github.com/seungsura/sbimage.git'
+    gitSshaddress = 'git@github.com:seungsura/sbimage.git'
     gitCredential = 'git_cre' // github credential 생성시의 ID
   }
 
