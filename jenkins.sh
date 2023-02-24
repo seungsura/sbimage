@@ -12,3 +12,7 @@ systemctl daemon-reload
 systemctl restart jenkins
 systemctl enable jenkins
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+<<<<<<< HEAD
+=======
+
+>>>>>>> 335732ab8cf15a65898c2090efe885e219821ddb
