@@ -4,43 +4,44 @@ pipeline {
   tools {
     maven 'my_maven'
   }
-  
+
   environment {
     gitName = 'seungsura'
     gitEmail = 'seungsura@gmail.com'
     gitWebaddress = 'https://github.com/seungsura/sbimage.git'
     gitSshaddress = 'git@github.com:seungsura/sbimage.git'
-    gitCredential = 'git_cre' // github credential 생성시의 ID
+    gitCredential = 'git_cre' // github credential 생성 시의 ID
     dockerHubRegistry = 'seungsura/sbimage'
+    dockerHubRegistryCredential = 'docker_cre'
   }
 
   stages {
-    stage('Checkout Github') {
+    stage('checkout Github') {
       steps {
         checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: gitCredential, url: gitWebaddress]]])
-      }
-      post {
-        failure {
-          echo 'Repository clone failure'
         }
-        success {
-          echo 'Repository clone success'
+        post {
+            failure {
+                echo 'Repository clone failure'
+            }
+            success {
+                echo 'Repository clone success'
+            }
         }
-      }
     }
     stage('Maven Build') {
       steps {
         sh 'mvn clean install'
-        // maven 플러그인이 미리 설치 되어있어야 함.
-      }
-      post {
-        failure {
-          echo 'maven build failure'
+        // maven 플러그인이 미리 설치 되어있어야 함
         }
-        success {
-          echo 'maven build success'
+        post {
+            failure {
+                echo 'Maven build failure'
+            }
+            success {
+                echo 'Maven build success'
+            }
         }
-      }
     }
     stage('Docker image Build') {
       steps {
@@ -58,6 +59,23 @@ pipeline {
             }
         }
     }
+    stage('docker image push') {
+      steps {
+        withDockerRegistry(credentialsId: dockerHubRegistryCredential, url: '') {
+          // withDockerRegistry : docker pipeline 플러그인 설치시 사용가능.
+          // dockerHubRegistryCredential : environment에서 선언한 docker_cre  
+            sh "docker push ${dockerHubRegistry}:${currentBuild.number}"
+            sh "docker push ${dockerHubRegistry}:latest"
+          }
+        }
+        post {
+            failure {
+                echo 'docker image push failure'
+            }
+            success {
+                echo 'docker image push success'
+            }
+        }
+    }
   }
 }
-
