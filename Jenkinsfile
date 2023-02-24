@@ -1,30 +1,16 @@
 pipeline {
   agent any
   // any, none, label, node, docker, dockerfile, kubernetes
-<<<<<<< HEAD
   tools {
     maven 'my_maven'
   }
   
   environment {
-    gitName = 'pcmin929'
-    gitEmail = 'pcmin929@gmail.com'
-    gitWebaddress = 'https://github.com/pcmin929/sb_code.git'
-    gitSshaddress = 'git@github.com:pcmin929/sb_code.git'
-    gitCredential = 'git_cre' // github credential 생성시의 ID
-=======
-
-  tools {
-    maven 'my_maven'
-  }
-
-  environment {
     gitName = 'seungsura'
     gitEmail = 'seungsura@gmail.com'
-    gitWebaddress = 'https://github.com/seungsura/sbimage'
-    gitSshaddress = 'git@github.com:seungsura/sbimage.git'
-    gitCredential = 'git_cre' // github credential 생성 시의 ID
->>>>>>> 335732ab8cf15a65898c2090efe885e219821ddb
+    gitWebaddress = 'https://github.com/seungsura/sb_code.git'
+    gitSshaddress = 'git@github.com:seungsura/sb_code.git'
+    gitCredential = 'git_cre' // github credential 생성시의 ID
   }
 
   stages {
@@ -57,7 +43,4 @@ pipeline {
     }
   }
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 335732ab8cf15a65898c2090efe885e219821ddb
