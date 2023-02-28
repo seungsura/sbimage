@@ -28,4 +28,4 @@ spec:
     spec:
       containers:
         - name: spring
-          image: seungsura/sbimage:12
+          image: seungsura/sbimage:13
