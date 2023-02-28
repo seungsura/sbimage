@@ -6,13 +6,13 @@ pipeline {
   }
   
   environment {
-    gitName = 'pcmin929'
-    gitEmail = 'pcmin929@gmail.com'
-    gitWebaddress = 'https://github.com/pcmin929/sb_code.git'
-    gitSshaddress = 'git@github.com:pcmin929/sb_code.git'
+    gitName = 'seungsura'
+    gitEmail = 'seungsura@gmail.com'
+    gitWebaddress = 'https://github.com/seungsura/sbimage.git'
+    gitSshaddress = 'git@github.com:seungsura/sbimage.git'
     gitCredential = 'git_cre' 
     // github credential 생성시의 ID
-    dockerHubRegistry = 'oolralra/sbimage'
+    dockerHubRegistry = 'seungsura/sbimage'
     dockerHubRegistryCredential = 'docker_cre' 
     // docker credential 생성시의 ID
   }
